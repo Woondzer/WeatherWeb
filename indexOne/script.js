@@ -1,6 +1,8 @@
 // template literal &{} kommer var användbart kolla upp 
 var todayWeather = document.querySelector('.today-Weather')
 var todayTemp = document.querySelector('.today-Temp')
+var userLatitude = document.querySelector('.user-latitude')
+var userLongitude = document.querySelector('.user-longitude')
 
 const weatherCodeMap = {
     0: "☀️",
@@ -16,18 +18,41 @@ const weatherCodeMap = {
     95: "⛈️"
   };
 
+//html5 geolocation tror att man kan få det här att ändra latitude och longitude in fetch länken.
+// för att få användarens live plats väder. undersök detta. tror vi då måste använda oss av PUSH i istället
+// för att använda FETCH!! <-- 
+const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+
+
+
 
 //this link is for stockholm, it should be based on the location the user is on. 
-fetch('https://api.open-meteo.com/v1/forecast?latitude=59.3294&longitude=18.0687&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,snowfall,weather_code,wind_speed_10m,wind_direction_10m&timezone=Europe%2FBerlin&models=metno_seamless')
+fetch('https://api.open-meteo.com/v1/forecast?latitude=59.3268&longitude=18.3897&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,snowfall,weather_code,wind_speed_10m,wind_direction_10m&timezone=Europe%2FBerlin&models=metno_seamless')
  .then(response => response.json())
  .then(data => {
     console.log(data)
 
     var weatherCode = data['current']['weather_code']; 
     var todayTempValue = data['current']['temperature_2m']
+    var userLatitudeValue = data['latitude']
+    var userLongitudeValue = data['longitude']
 
     var todayWeatherValue = weatherCodeMap[weatherCode];
 
+    userLatitude.innerHTML = `${userLatitudeValue} - ${userLongitudeValue}`
 
     todayWeather.innerHTML = `${todayTempValue}°C ${todayWeatherValue}`;
 
