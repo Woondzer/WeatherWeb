@@ -1,0 +1,69 @@
+/*  tänker att stylen har en blålilarosa isch main bakgrund med en eller flera  frostatglasliknande  "boxar" som man ser olika data i */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster&display=swap');
+
+body {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(159, 210, 236);
+    font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+    padding: 20px 50px 20px 50px;
+    /* padding: 0px 50px 0px 50px; */
+}
+
+.topNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    
+}
+
+
+#wlcmSign {
+    font-family: 'Lobster', Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 80px;
+}
+
+.startInfo {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 600px;
+    padding: 50px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#infoBTN {
+    background-color: rgb(159, 210, 236);
+    color: white;
+    font-weight: bold;
+    font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.1s;
+}
+
+#infoBTN:hover {
+    transform: scale(1.1);
+}
+
+#infoBTN:visited {
+    color: white;
+}
+
