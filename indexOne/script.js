@@ -21,19 +21,20 @@ const weatherCodeMap = {
 //html5 geolocation tror att man kan få det här att ändra latitude och longitude in fetch länken.
 // för att få användarens live plats väder. undersök detta. tror vi då måste använda oss av PUSH i istället
 // för att använda FETCH!! <-- 
-const x = document.getElementById("demo");
+const x = document.getElementById("auto-Location");
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
+    navigator.geolocation.getCurrentPosition(showPosition)
+   }
+   else { 
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
 function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
+  x.innerHTML = "You're here:" + position.coords.latitude + " - " +
+  position.coords.longitude;
 }
 
 
@@ -47,13 +48,9 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=59.3268&longitude=18.3897
 
     var weatherCode = data['current']['weather_code']; 
     var todayTempValue = data['current']['temperature_2m']
-    var userLatitudeValue = data['latitude']
-    var userLongitudeValue = data['longitude']
+
 
     var todayWeatherValue = weatherCodeMap[weatherCode];
-
-    userLatitude.innerHTML = `${userLatitudeValue} - ${userLongitudeValue}`
-
     todayWeather.innerHTML = `${todayTempValue}°C ${todayWeatherValue}`;
 
     console.log(todayTemp)
