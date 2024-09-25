@@ -6,23 +6,35 @@
     <link rel="stylesheet" href="styles.css" type="text/css">
     <title>WeatherWebb</title>
 </head>
-<body onload="getLocation()">
+<body>
 
-        
+
     <div class="topNav">
-        <a class="mn-Home" href="index.html">Home</a>
-        <p onload="showPosition()" id="auto-Location">place/city</p>
+        <span id="today-Date"></span>
+        <p id="user-Location"></p>
         <p class="today-Temp today-Weather"></p>
         <!-- location/time/celcius/weatherCode in topNav -->
     </div>
-        
-    <h1 id="wlcmSign">WeatherWeb</h1>
+    <a href="/indexOne/index.html"><h1 id="wlcmSign">WeatherWeb</h1></a>
+    <span id="localTime"></span>
 
     <div class="startInfo">
-        <p id="day-or-night">Saved locations & maybe previous searches</p> </br>
-        <p id="latitude-paragraph"></p>
-        <a id="infoBTN" href="/indexTwo/indexTwo.html">More info</a>
+       <p> previously searched locations:</p>
+
+    <div id="searchElement">
+        <label for="input-search">Search</label>
+        <input id="inputSearch" name="input-search" placeholder="Enter a location" />
+        <button type="submit" onclick="searchLocation()">search</button>
     </div>
+
+
+
+        <a id="infoBTN" href="/indexTwo/indexTwo.html">More info</a>
+    
+        
+    
+    </div>
+
 
 
     <footer>
@@ -30,6 +42,7 @@
         <a href="mailto: fakeWeatherWebb@notReal.com">WeatherWebb@fakeMail.com</a></p>
     </footer>
 
+    <script src="/functions/topnav.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

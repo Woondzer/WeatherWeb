@@ -1,62 +1,85 @@
 // template literal &{} kommer var användbart kolla upp 
-var todayWeather = document.querySelector('.today-Weather')
-var todayTemp = document.querySelector('.today-Temp')
-var userLatitude = document.querySelector('.user-latitude')
-var userLongitude = document.querySelector('.user-longitude')
 
-const weatherCodeMap = {
-    0: "☀️",
-    1: "🌤️",
-    2: "⛅",
-    3: "☁️",
-    45: "🌫️",
-    48: "🌫️",
-    51: "🌧️",
-    61: "🌦️",
-    63: "🌧️",
-    71: "❄️",
-    95: "⛈️"
-  };
 
-//html5 geolocation tror att man kan få det här att ändra latitude och longitude in fetch länken.
-// för att få användarens live plats väder. undersök detta. tror vi då måste använda oss av PUSH i istället
-// för att använda FETCH!! <-- 
-const x = document.getElementById("auto-Location");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition)
-   }
-   else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
+// --------------------- search location function---------------------//
+
+
+
+function searchLocation() {
+    const searchValue = document.getElementById("inputSearch").value;
+
+    if (searchValue) {
+
+        fetch(`https://api.api-ninjas.com/v1/geocoding?city=${searchValue}`, {
+            headers: {
+                'X-API-Key':'s0Hj2ajvVWXKXrWtKy7l7Q==FysjY4kGVumIPBcF'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                const lat = data[0].latitude;
+                const lon = data[0].longitude;
+                console.log(`coordinates of ${searchValue}: Latitude ${lat}, longitude: ${lon}`); //removie this
+
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&timezone=Europe%2FBerlin&forecast_days=5&models=icon_seamless`)
+                .then(response => response.json())
+                .then(weatherData => {
+
+
+                const dailyForecast = weatherData.daily;
+                localStorage.setItem("weatherData",JSON.stringify(dailyForecast));
+
+                console.log(dailyForecast)
+
+                // const dlyweatherCode =weatherData.daily.weather_code;
+                // const dlyTemp = weatherData.daily.temperature_2m;
+                // const dlyRainSum = weatherData.daily.rain_sum;
+                // const dlyMinTemp = weatherData.daily.temperature_2m_min;
+                // const dlyMaxTemp = weatherData.daily.temperature_2m_max;
+                // const dlyWindSpeed = weatherData.daily.wind_speed_10m_max
+                 
+                    // local storage to save information to be able to grab from second html page
+                // localStorage.setItem("cityName", searchValue);
+                // localStorage.setItem("dlyweatherCode",dlyweatherCode);
+                // localStorage.setItem("dlytemperature",dlyTemp);
+                // localStorage.setItem("dlyRainsum",dlyRainSum);
+                // localStorage.setItem("dlyMinTemp",dlyMinTemp);
+                // localStorage.setItem("dlyMaxTemp",dlyMaxTemp);
+                // localStorage.setItem("dlyWindSpeed",dlyWindSpeed);
+        
+
+                })
+            }
+        })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+} else {
+    console.log("Please enter a city name"); // change to popup or htmltext Error message instead 
+}
 }
 
-function showPosition(position) {
-  x.innerHTML = "You're here:" + position.coords.latitude + " - " +
-  position.coords.longitude;
+
+
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            userLocation.innerHTML = "User denied the request for Geolocation.";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            userLocation.innerHTML = "Location information is unavailable.";
+            break;
+        case error.TIMEOUT:
+            userLocation.innerHTML = "The request to get user location timed out.";
+            break;
+        case error.UNKNOWN_ERROR:
+            userLocation.innerHTML = "An unknown error occured.";
+            break;
+    }
 }
-
-
-
-
-//this link is for stockholm, it should be based on the location the user is on. 
-fetch('https://api.open-meteo.com/v1/forecast?latitude=59.3268&longitude=18.3897&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,snowfall,weather_code,wind_speed_10m,wind_direction_10m&timezone=Europe%2FBerlin&models=metno_seamless')
- .then(response => response.json())
- .then(data => {
-    console.log(data)
-
-    var weatherCode = data['current']['weather_code']; 
-    var todayTempValue = data['current']['temperature_2m']
-
-
-    var todayWeatherValue = weatherCodeMap[weatherCode];
-    todayWeather.innerHTML = `${todayTempValue}°C ${todayWeatherValue}`;
-
-    console.log(todayTemp)
- })
- 
- .catch(error => console.error('Error', error));
 
 
 //  document.getElementById("latitude-paragraph").innerText=apidata.latitude

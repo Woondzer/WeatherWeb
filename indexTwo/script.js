@@ -1,44 +1,36 @@
-// const x = document.getElementById("demo");
+document.addEventListener("DOMContentLoaded", () => {
 
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else {
-//     x.innerHTML = "Geolocation is not supported by this browser.";
-//   }
-// }
+const dailyForecast = JSON.parse(localStorage.getItem("weatherData"));
 
-// function showPosition(position) {
-//   x.innerHTML = "Latitude: " + position.coords.latitude +
-//   "<br>Longitude: " + position.coords.longitude;
-// }
-
-const x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${long}&format=json`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-      
-          const locationName = data['address']['town'];
-
-          // Display the location name
-          x.innerHTML += `${locationName}`;
-        })
-        .catch(error => console.error('Error fetching location name:', error));
-    }, showError);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
+if (dailyForecast) {
+  document.querySelector('.dlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
 }
 
-// Error handling function
+ else {
+  console.error("No forecast data available");
+}
+
+
+
+function getWeatherEmoji(weatherCode) {
+  const weatherCodeMap = {
+    0: "☀️",
+    1: "🌤️",
+    2: "⛅",
+    3: "☁️",
+    45: "🌫️",
+    48: "🌫️",
+    51: "🌧️",
+    61: "🌦️",
+    63: "🌧️",
+    71: "❄️",
+    95: "⛈️"
+  };
+  
+  return weatherCodeMap[weatherCode] || "🌈";
+}
+
+    // Error handling function
 function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
@@ -56,5 +48,4 @@ function showError(error) {
   }
 }
 
-// Call the function to get the location
-getLocation();
+});
