@@ -1,9 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-const dailyForecast = JSON.parse(localStorage.getItem("weatherData"));
+const dailyForecast = JSON.parse(localStorage.getItem("dailyweatherData"));
+const currentForecast = JSON.parse(localStorage.getItem("currweatherData"));
+
 
 if (dailyForecast) {
+  // today
   document.querySelector('.dlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
+  document.querySelector('.tempMinMax').innerHTML = `${(dailyForecast.temperature_2m_min[0])} - ${(dailyForecast.temperature_2m_max[0])}`;
+  // document.querySelector('.dlyMinTemp').innerHTML = `${(dailyForecast.temperature_2m_max[0])}`;
+  document.querySelector('.dlyRainsum').innerHTML = `${(dailyForecast.rain_sum[0])}`;
+  document.querySelector('.dlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
+  document.querySelector('.currTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
+
+  // day2
+  document.querySelector('.day2weatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[1])}`;
+  document.querySelector('.tempMinMax2').innerHTML = `${(dailyForecast.temperature_2m_min[1])} - ${(dailyForecast.temperature_2m_max[1])}`;
+  document.querySelector('.day2Rainsum').innerHTML = `${(dailyForecast.rain_sum[1])}`;
+  document.querySelector('.day2WindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[1])}`;
+  const tempMinDay2 = dailyForecast.temperature_2m_min[1];
+  const tempMaxDay2 = dailyForecast.temperature_2m_max[1];
+  const avgTempDay2 = (tempMinDay2 + tempMaxDay2) / 2;
+  document.querySelector('.day2Temp').innerHTML = `${avgTempDay2.toFixed(1)}°c`
+
+  // day3
+  document.querySelector('.day3weatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[2])}`;
+  document.querySelector('.tempMinMax3').innerHTML = `${(dailyForecast.temperature_2m_min[2])} - ${(dailyForecast.temperature_2m_max[2])}`;
+  document.querySelector('.day3Rainsum').innerHTML = `${(dailyForecast.rain_sum[2])}`;
+  document.querySelector('.day3WindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[2])}`;
+  const tempMinDay3 = dailyForecast.temperature_2m_min[2];
+  const tempMaxDay3 = dailyForecast.temperature_2m_max[2];
+  const avgTempDay3 = (tempMinDay3 + tempMaxDay3) / 2;
+  document.querySelector('.day3Temp').innerHTML = `${avgTempDay3.toFixed(1)}°c`
+
+  // day4
+  document.querySelector('.day4weatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[3])}`;
+  document.querySelector('.tempMinMax4').innerHTML = `${(dailyForecast.temperature_2m_min[3])} - ${(dailyForecast.temperature_2m_max[3])}`;
+  document.querySelector('.day4Rainsum').innerHTML = `${(dailyForecast.rain_sum[3])}`;
+  document.querySelector('.day4WindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[3])}`;
+  const tempMinDay4 = dailyForecast.temperature_2m_min[3];
+  const tempMaxDay4 = dailyForecast.temperature_2m_max[3];
+  const avgTempDay4 = (tempMinDay4 + tempMaxDay4) / 2;
+  document.querySelector('.day4Temp').innerHTML = `${avgTempDay4.toFixed(1)}°c`
+
+  // day5
+  document.querySelector('.day5weatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[4])}`;
+  document.querySelector('.tempMinMax5').innerHTML = `${(dailyForecast.temperature_2m_min[4])} - ${(dailyForecast.temperature_2m_max[4])}`;
+  document.querySelector('.day5Rainsum').innerHTML = `${(dailyForecast.rain_sum[4])}`;
+  document.querySelector('.day5WindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[4])}`;
+  const tempMinDay5 = dailyForecast.temperature_2m_min[4];
+  const tempMaxDay5 = dailyForecast.temperature_2m_max[4];
+  const avgTempDay5 = (tempMinDay5 + tempMaxDay5) / 2;
+  document.querySelector('.day5Temp').innerHTML = `${avgTempDay5.toFixed(1)}°c`
 }
 
  else {

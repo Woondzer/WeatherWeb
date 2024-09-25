@@ -23,15 +23,17 @@ function searchLocation() {
                 const lon = data[0].longitude;
                 console.log(`coordinates of ${searchValue}: Latitude ${lat}, longitude: ${lon}`); //removie this
 
-                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&timezone=Europe%2FBerlin&forecast_days=5&models=icon_seamless`)
+                fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&wind_speed_unit=ms&timezone=Europe%2FBerlin&forecast_days=5&models=icon_seamless`)
                 .then(response => response.json())
                 .then(weatherData => {
 
-
+                const currentForecast = weatherData.current;
+                localStorage.setItem("currweatherData",JSON.stringify(currentForecast));
                 const dailyForecast = weatherData.daily;
-                localStorage.setItem("weatherData",JSON.stringify(dailyForecast));
+                localStorage.setItem("dailyweatherData",JSON.stringify(dailyForecast));
 
                 console.log(dailyForecast)
+                console.log(currentForecast)
 
                 // const dlyweatherCode =weatherData.daily.weather_code;
                 // const dlyTemp = weatherData.daily.temperature_2m;
