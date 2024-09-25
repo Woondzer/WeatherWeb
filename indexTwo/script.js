@@ -8,7 +8,6 @@ if (dailyForecast) {
   // today
   document.querySelector('.dlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
   document.querySelector('.tempMinMax').innerHTML = `${(dailyForecast.temperature_2m_min[0])} - ${(dailyForecast.temperature_2m_max[0])}`;
-  // document.querySelector('.dlyMinTemp').innerHTML = `${(dailyForecast.temperature_2m_max[0])}`;
   document.querySelector('.dlyRainsum').innerHTML = `${(dailyForecast.rain_sum[0])}`;
   document.querySelector('.dlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
   document.querySelector('.currTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
@@ -72,11 +71,30 @@ function getWeatherEmoji(weatherCode) {
     61: "🌦️",
     63: "🌧️",
     71: "❄️",
+    80: "🌧️",
     95: "⛈️"
   };
   
   return weatherCodeMap[weatherCode] || "🌈";
 }
+
+//show users search location in text
+
+function getUserSearch() {
+  const cityName = localStorage.getItem("userSearch");
+
+  if (cityName) {
+    document.querySelector('.cityName').textContent = cityName;
+  }
+  else {
+    document.querySelector('.cityName').textContent = "No city entered.";
+  }
+}
+window.onload = getUserSearch;
+
+
+
+
 
     // Error handling function
 function showError(error) {

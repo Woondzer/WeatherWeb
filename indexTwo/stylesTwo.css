@@ -49,6 +49,10 @@ body {
     background-color: white;
 }
 
+.displayCity {
+    font-size: 50px;
+}
+
 .today {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;

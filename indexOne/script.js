@@ -64,6 +64,10 @@ function searchLocation() {
 }
 
 
+function userSearch() {
+    const userSearchValue = document.getElementById("inputSearch").value;
+    localStorage.setItem("userSearch", userSearchValue);
+}
 
 
 function showError(error) {
