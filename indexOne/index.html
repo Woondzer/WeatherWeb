@@ -15,24 +15,72 @@
         <p class="today-Temp today-Weather"></p>
         <!-- location/time/celcius/weatherCode in topNav -->
     </div>
+   
     <a href="/indexOne/index.html"><h1 id="wlcmSign">WeatherWeb</h1></a>
+    
     <span id="localTime"></span>
 
     <div class="startInfo">
-       <p> previously searched locations:</p>
 
-    <div id="searchElement">
-        <label for="input-search">Search</label>
-        <input id="inputSearch" name="input-search" placeholder="Enter a location" />
-        <button type="submit" onclick="searchLocation(); userSearch()">search</button>
-    </div>
+        <h1 class="s-h1">Saved Locations</h1>
 
+        <section class="searchSave1">
+            save1
+        </section>
 
+        <section class="searchSave2">
+            save2
+        </section>
 
-        <a id="infoBTN" href="/indexTwo/indexTwo.html">More info</a>
-    
+        <section class="searchSave3">
+            save3
+        </section>
         
     
+        
+        <a id="moreInfo" href="/indexTwo/indexTwo.html">
+            <section class="searchPopup">
+                <section class="locationName" >
+                </section>
+
+                <section id="saveBtn" class="favStar">&#9734;</section>
+
+                <section class="dayDate">
+                </section>
+    
+                <section class="dlyweatherCode">    
+                </section>
+    
+                <section class="info2">
+                    <p class="currTemp"></p>
+                </section>
+    
+                <section class="info3">
+                    <p class="dlyRainsum"></p>
+                    <p class="rainMetrics">&nbsp;- ☔(mm)</p>
+                </section>
+    
+                <section class="info4"> <!--temp min & max-->
+                    <p class="tempMinMax"></p>
+                    <p class="txttmpMinMax">min °c&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;max °c</p>
+                </section>
+                
+                <section class="info5">
+                    <p class="dlyWindSpeed"></p>
+                    <p class="meterSecond">(m/s)</p>
+                </section>
+    
+            </section>
+        </a>
+        <div id="searchElement">
+            <!-- <label for="input-search">Search</label> -->
+            <input id="inputSearch" name="input-search" placeholder="Enter location" />
+            
+            
+            <button id="infoBTN" type="button"  onclick="searchLocation(); userSearch(); getUserSearch()">search</button>
+            
+        </div>
+     
     </div>
 
 
@@ -42,6 +90,7 @@
         <a href="mailto: fakeWeatherWebb@notReal.com">WeatherWebb@fakeMail.com</a></p>
     </footer>
 
+    <script src="/functions/save.js"></script>
     <script src="/functions/topnav.js"></script>
     <script src="script.js"></script>
 </body>

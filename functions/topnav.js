@@ -2,7 +2,7 @@
 var todayWeather = document.querySelector('.today-Weather')
 var todayTemp = document.querySelector('.today-Temp')
 
-
+//todays date
 const todayDate = new Date();
 const dateFormat = {month: 'short', day: 'numeric' };
 const formattedDate = todayDate.toLocaleDateString('en-US', dateFormat);
@@ -48,7 +48,7 @@ function getLocation() {
                 .then(data => {
                     console.log(data)
 
-                    const locationName = data['address']['town']; //can't allways show town some times has to be 'suburb'
+                    const locationName = data['address']['town'] || data['address']['suburb'] || 'I find your lack of location disturbing';
                         
                     userLocation.innerHTML += `${locationName}`;
                 })

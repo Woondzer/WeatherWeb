@@ -8,6 +8,7 @@
 
 function searchLocation() {
     const searchValue = document.getElementById("inputSearch").value;
+    
 
     if (searchValue) {
 
@@ -31,26 +32,29 @@ function searchLocation() {
                 localStorage.setItem("currweatherData",JSON.stringify(currentForecast));
                 const dailyForecast = weatherData.daily;
                 localStorage.setItem("dailyweatherData",JSON.stringify(dailyForecast));
+            
+
+                    //show search result in box
+                    if (dailyForecast) {
+                        document.querySelector('#moreInfo').style.display= 'block';
+
+                        document.querySelector('.dlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
+                        document.querySelector('.tempMinMax').innerHTML = `${(dailyForecast.temperature_2m_min[0])} - ${(dailyForecast.temperature_2m_max[0])}`;
+                        document.querySelector('.dlyRainsum').innerHTML = `${(dailyForecast.rain_sum[0])}`;
+                        document.querySelector('.dlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
+                        document.querySelector('.currTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
+
+                        //todays date
+                        const todayDate = new Date();
+                        const dateFormat = {month: 'short', day: 'numeric' };
+                        const formattedDate = todayDate.toLocaleDateString('en-US', dateFormat);
+                        const dateElement = document.querySelector('.dayDate');
+
+                        dateElement.innerHTML = `${formattedDate}`;
+                    }
 
                 console.log(dailyForecast)
                 console.log(currentForecast)
-
-                // const dlyweatherCode =weatherData.daily.weather_code;
-                // const dlyTemp = weatherData.daily.temperature_2m;
-                // const dlyRainSum = weatherData.daily.rain_sum;
-                // const dlyMinTemp = weatherData.daily.temperature_2m_min;
-                // const dlyMaxTemp = weatherData.daily.temperature_2m_max;
-                // const dlyWindSpeed = weatherData.daily.wind_speed_10m_max
-                 
-                    // local storage to save information to be able to grab from second html page
-                // localStorage.setItem("cityName", searchValue);
-                // localStorage.setItem("dlyweatherCode",dlyweatherCode);
-                // localStorage.setItem("dlytemperature",dlyTemp);
-                // localStorage.setItem("dlyRainsum",dlyRainSum);
-                // localStorage.setItem("dlyMinTemp",dlyMinTemp);
-                // localStorage.setItem("dlyMaxTemp",dlyMaxTemp);
-                // localStorage.setItem("dlyWindSpeed",dlyWindSpeed);
-        
 
                 })
             }
@@ -58,17 +62,53 @@ function searchLocation() {
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+
+
+
 } else {
     console.log("Please enter a city name"); // change to popup or htmltext Error message instead 
 }
 }
 
 
+function getWeatherEmoji(weatherCode) {
+    const weatherCodeMap = {
+      0: "☀️",
+      1: "🌤️",
+      2: "⛅",
+      3: "☁️",
+      45: "🌫️",
+      48: "🌫️",
+      51: "🌧️",
+      61: "🌦️",
+      63: "🌧️",
+      71: "❄️",
+      80: "🌧️",
+      95: "⛈️"
+    };
+    
+    return weatherCodeMap[weatherCode] || "🌈";
+  }
+
+
+// --------------------- store user search input for page 2---------------------//
+
 function userSearch() {
     const userSearchValue = document.getElementById("inputSearch").value;
     localStorage.setItem("userSearch", userSearchValue);
 }
 
+
+
+
+
+//loading location on popup
+function getUserSearch() {
+    var inputText = document.querySelector('#inputSearch').value;
+    document.querySelector('.locationName').innerHTML = inputText;
+  }
+  window.onload = getUserSearch;
+  
 
 function showError(error) {
     switch(error.code) {

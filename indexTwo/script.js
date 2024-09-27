@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
+//show users search location in text
+
+function getUserSearch() {
+  const cityName = localStorage.getItem("userSearch");
+
+  if (cityName) {
+    document.querySelector('.cityName').textContent = cityName;
+  }
+  else {
+    document.querySelector('.cityName').textContent = "No city entered.";
+  }
+}
+window.onload = getUserSearch;
+
+//weather for 5 days
+
 const dailyForecast = JSON.parse(localStorage.getItem("dailyweatherData"));
 const currentForecast = JSON.parse(localStorage.getItem("currweatherData"));
 
@@ -78,21 +95,26 @@ function getWeatherEmoji(weatherCode) {
   return weatherCodeMap[weatherCode] || "🌈";
 }
 
-//show users search location in text
 
-function getUserSearch() {
-  const cityName = localStorage.getItem("userSearch");
 
-  if (cityName) {
-    document.querySelector('.cityName').textContent = cityName;
-  }
-  else {
-    document.querySelector('.cityName').textContent = "No city entered.";
-  }
+
+// todays date + 4days
+const dayDateClasses = ["dayDate", "day2Date", "day3Date", "day4Date", "day5Date"];
+
+const todayDate = new Date();
+const dateFormat = {month: 'short', day: 'numeric' };
+
+for (let i = 0; i < dayDateClasses.length; i++) {
+    const futureDate = new Date(todayDate);
+    futureDate.setDate(todayDate.getDate() + i);
+    
+    const formattedDate = futureDate.toLocaleDateString('en-US', dateFormat);
+    const dateElement = document.querySelector(`.${dayDateClasses[i]}`);
+
+if (dateElement) {
+  dateElement.innerHTML = `${formattedDate}`
 }
-window.onload = getUserSearch;
-
-
+}
 
 
 
