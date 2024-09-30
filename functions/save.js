@@ -25,7 +25,7 @@ function userFavorite() {
         star.classList.add('active');
         star.innerHTML = '&#9733;'; // Filled star
 
-        const cityName = document.querySelector('#inputSearch').value;
+        const cityName = localStorage.getItem("userSearch");
         const currentForecast = JSON.parse(localStorage.getItem("currweatherData"));
         const dailyForecast = JSON.parse(localStorage.getItem("dailyweatherData"));
 
@@ -42,7 +42,14 @@ function userFavorite() {
             tempMin: dailyForecast.temperature_2m_min[0],
             tempMax: dailyForecast.temperature_2m_max[0],
             windSpeed: dailyForecast.wind_speed_10m_max[0],
-            date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+            fiveDayForecast: {                                            // Save the full 5-day forecast
+                weatherCodes: dailyForecast.weather_code,
+                minTemps: dailyForecast.temperature_2m_min,
+                maxTemps: dailyForecast.temperature_2m_max,
+                rainSums: dailyForecast.rain_sum,
+                windSpeeds: dailyForecast.wind_speed_10m_max
+            }
         };
 
         // Save the new favorite location in localStorage
@@ -101,7 +108,7 @@ function updateSavedLocationsUI() {
             // redirection function for saveboxes to get more info onpage 2
             box.onclick = function() {
                 localStorage.setItem("selectedLocation", JSON.stringify(locationData));
-                window.location.href = "/indexTwo/indexTwo.html"; 
+                window.location.href = "/indexThree/indexThree.html"; 
             };
 
             // display savedbox
@@ -118,11 +125,11 @@ function resetPopup() {
     document.getElementById('inputSearch').value = '';
 
     // Clear weather info inside the popup
-    document.querySelector('.dlyweatherCode').innerHTML = '';
-    document.querySelector('.tempMinMax').innerHTML = '';
-    document.querySelector('.dlyRainsum').innerHTML = '';
-    document.querySelector('.dlyWindSpeed').innerHTML = '';
-    document.querySelector('.currTemp').innerHTML = '';
+    document.querySelector('.popupdlyweatherCode').innerHTML = '';
+    document.querySelector('.popuptempMinMax').innerHTML = '';
+    document.querySelector('.popupdlyRainsum').innerHTML = '';
+    document.querySelector('.popupdlyWindSpeed').innerHTML = '';
+    document.querySelector('.popupcurrTemp').innerHTML = '';
 
     // Reset the star button to an empty state
     const star = document.querySelector('.favStar');

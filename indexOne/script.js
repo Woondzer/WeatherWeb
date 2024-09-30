@@ -33,17 +33,17 @@ function searchLocation() {
                     if (dailyForecast) {
                         document.querySelector('#moreInfo').style.display= 'block';
 
-                        document.querySelector('.dlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
-                        document.querySelector('.tempMinMax').innerHTML = `${(dailyForecast.temperature_2m_min[0])} - ${(dailyForecast.temperature_2m_max[0])}`;
-                        document.querySelector('.dlyRainsum').innerHTML = `${(dailyForecast.rain_sum[0])}`;
-                        document.querySelector('.dlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
-                        document.querySelector('.currTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
+                        document.querySelector('.popupdlyweatherCode').innerHTML = `${getWeatherEmoji(dailyForecast.weather_code[0])}`;
+                        document.querySelector('.popuptempMinMax').innerHTML = `${(dailyForecast.temperature_2m_min[0])} - ${(dailyForecast.temperature_2m_max[0])}`;
+                        document.querySelector('.popupdlyRainsum').innerHTML = `${(dailyForecast.rain_sum[0])}`;
+                        document.querySelector('.popupdlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
+                        document.querySelector('.popupcurrTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
 
                         //todays date
                         const todayDate = new Date();
                         const dateFormat = {month: 'short', day: 'numeric' };
                         const formattedDate = todayDate.toLocaleDateString('en-US', dateFormat);
-                        const dateElement = document.querySelector('.dayDate');
+                        const dateElement = document.querySelector('.popupdayDate');
 
                         dateElement.innerHTML = `${formattedDate}`;
                     }
@@ -87,7 +87,7 @@ function getWeatherEmoji(weatherCode) {
 // loading location on popup
 function getUserSearch() {
     var inputText = document.querySelector('#inputSearch').value;
-    document.querySelector('.locationName').innerHTML = inputText;
+    document.querySelector('.popupLocationName').innerHTML = inputText;
   }
   window.onload = getUserSearch;
   

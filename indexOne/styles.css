@@ -133,7 +133,7 @@ a {
 } */
 
 
-
+/* search popup box styling */
 .searchPopup {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -182,19 +182,19 @@ a {
             color: gold;
         }
 
-        .dlyweatherCode {
+        .popupdlyweatherCode {
         
             font-size: 100px;
             align-self: center;
             text-align:center;
         }
 
-        .dlyRainsum {
+        .popupdlyRainsum {
             margin: 0;
             justify-self: center;
         }
 
-        .rainMetrics {
+        .popuprainMetrics {
             font-size: 15px;
             font-weight: lighter;
 
@@ -206,7 +206,7 @@ a {
         }
 
 
-        .txttmpMinMax {
+        .popuptxttmpMinMax {
             font-size: 15px;
             font-weight: lighter;
         }
@@ -215,7 +215,7 @@ a {
             margin-top: 0;
         }
 
-        .meterSecond {
+        .popupmeterSecond {
             font-size: 15px;
             font-weight: lighter;
         }
@@ -261,3 +261,69 @@ a {
     color: white;
 }
 
+
+/* styling for saved locations */
+
+
+.locationName {
+    grid-column: 1 / span 5;
+    justify-self: start;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.favStar {
+    grid-column: 6;
+    justify-self: end;
+    margin-right: 10px;
+    color:gray;
+    transition: color 0.3s ease;
+}
+
+.favStar:hover {
+    color: gold;
+    transform: scale(1.1);
+}
+
+.active {
+    color: gold;
+}
+
+.dlyweatherCode {
+
+    font-size: 100px;
+    align-self: center;
+    text-align:center;
+}
+
+.dlyRainsum {
+    margin: 0;
+    justify-self: center;
+}
+
+.rainMetrics {
+    font-size: 15px;
+    font-weight: lighter;
+
+}
+
+.info4 {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+.txttmpMinMax {
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.tempMinMax {
+    margin-top: 0;
+}
+
+.meterSecond {
+    font-size: 15px;
+    font-weight: lighter;
+}
