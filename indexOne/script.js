@@ -17,7 +17,6 @@ function searchLocation() {
             if (data.length > 0) {
                 const lat = data[0].latitude;
                 const lon = data[0].longitude;
-                console.log(`coordinates of ${searchValue}: Latitude ${lat}, longitude: ${lon}`); //removie this
 
                 fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&wind_speed_unit=ms&timezone=Europe%2FBerlin&forecast_days=5&models=icon_seamless`)
                 .then(response => response.json())
@@ -39,6 +38,7 @@ function searchLocation() {
                         document.querySelector('.popupdlyWindSpeed').innerHTML = `${(dailyForecast.wind_speed_10m_max[0])}`;
                         document.querySelector('.popupcurrTemp').innerHTML = `${(currentForecast.temperature_2m)}°c`;
 
+                        
                         //todays date
                         const todayDate = new Date();
                         const dateFormat = {month: 'short', day: 'numeric' };
@@ -47,22 +47,15 @@ function searchLocation() {
 
                         dateElement.innerHTML = `${formattedDate}`;
                     }
-
-                console.log(dailyForecast)
-                console.log(currentForecast)
-
                 })
             }
-        })
-        
+        })  
     .catch(error => {
         console.error('Error fetching data:', error);
     });
 
 
-} else {
-    console.log("Please enter a city name"); // change to popup or htmltext Error message instead 
-}
+} 
 }
 
 function getWeatherEmoji(weatherCode) {
@@ -84,7 +77,7 @@ function getWeatherEmoji(weatherCode) {
     return weatherCodeMap[weatherCode] || "🌈";
   }
 
-// loading location on popup
+// --------------------- loading location on popup---------------------//
 function getUserSearch() {
     var inputText = document.querySelector('#inputSearch').value;
     document.querySelector('.popupLocationName').innerHTML = inputText;

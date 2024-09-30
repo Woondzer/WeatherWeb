@@ -95,13 +95,13 @@ function updateSavedLocationsUI() {
 
             // add data to saveboxes
             box.innerHTML = `
-                <p class="locationName">${locationData.location}</p>
-                <p class="dayDate">${locationData.date}</p>
-                <p class="dlyweatherCode">${locationData.weatherCode}</p>
-                <p class="currTemp">${locationData.currTemp}°C</p>
-                <p class="dlyRainsum">${locationData.rain} mm</p>
-                <p class="tempMinMax">${locationData.tempMin} - ${locationData.tempMax}°C</p>
-                <p class="dlyWindSpeed">${locationData.windSpeed} m/s</p>
+                <section class="locationName">${locationData.location}</section>
+                <section class="dayDate">${locationData.date}</section>
+                <section class="dlyweatherCode">${locationData.weatherCode}</section>
+                <section class="currTemp">${locationData.currTemp}°C</section>
+                <section class="dlyRainsum">${locationData.rain} mm</section>
+                <section class="tempMinMax">${locationData.tempMin} - ${locationData.tempMax}°C</section>
+                <section class="dlyWindSpeed">${locationData.windSpeed} m/s</section>
                 <button class="removeStar" onclick="removeFavorite(${index}); event.stopPropagation();">&#9733;</button>
             `;
             
@@ -112,7 +112,7 @@ function updateSavedLocationsUI() {
             };
 
             // display savedbox
-            box.style.display = 'block';
+            box.style.display = 'grid';
         }
     });
 }
@@ -120,8 +120,6 @@ function updateSavedLocationsUI() {
 function resetPopup() {
     // Hide the popup
     document.querySelector('#moreInfo').style.display = 'none';
-
-    // Clear the input field
     document.getElementById('inputSearch').value = '';
 
     // Clear weather info inside the popup
