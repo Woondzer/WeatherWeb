@@ -1,10 +1,5 @@
-// template literal &{} kommer var användbart kolla upp 
-
-
 
 // --------------------- search location function---------------------//
-
-
 
 function searchLocation() {
     const searchValue = document.getElementById("inputSearch").value;
@@ -59,17 +54,16 @@ function searchLocation() {
                 })
             }
         })
+        
     .catch(error => {
         console.error('Error fetching data:', error);
     });
-
 
 
 } else {
     console.log("Please enter a city name"); // change to popup or htmltext Error message instead 
 }
 }
-
 
 function getWeatherEmoji(weatherCode) {
     const weatherCodeMap = {
@@ -90,6 +84,14 @@ function getWeatherEmoji(weatherCode) {
     return weatherCodeMap[weatherCode] || "🌈";
   }
 
+// loading location on popup
+function getUserSearch() {
+    var inputText = document.querySelector('#inputSearch').value;
+    document.querySelector('.locationName').innerHTML = inputText;
+  }
+  window.onload = getUserSearch;
+  
+
 
 // --------------------- store user search input for page 2---------------------//
 
@@ -97,18 +99,6 @@ function userSearch() {
     const userSearchValue = document.getElementById("inputSearch").value;
     localStorage.setItem("userSearch", userSearchValue);
 }
-
-
-
-
-
-//loading location on popup
-function getUserSearch() {
-    var inputText = document.querySelector('#inputSearch').value;
-    document.querySelector('.locationName').innerHTML = inputText;
-  }
-  window.onload = getUserSearch;
-  
 
 function showError(error) {
     switch(error.code) {
@@ -127,18 +117,3 @@ function showError(error) {
     }
 }
 
-
-//  document.getElementById("latitude-paragraph").innerText=apidata.latitude
-//    detta kan läggas in mellan data => { } för att visa latitude i text. 
-
-// om du vill få ut typ latitude
-// så skriver du data.latitude
-// och kan spara det i en variabel eller vad du vill
-// let latitude = data.latitude
-
-// gör en paragraf i html
-// med ett id
-// typ id="latitude-paragraph"
-// sen i js skriver du
-// document.getElementById("latitude-paragraph").innerText = data.latitude 
-// eller nåt i den stilen

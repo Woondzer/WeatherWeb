@@ -118,6 +118,22 @@ a {
 
 
 
+
+/* #Delete {
+    grid-column: 6;
+    justify-self: end;
+    margin-right: 10px;
+    color:gray;
+    transition: color 0.3s ease;
+}
+
+#Delete:hover {
+    color: red;
+    transform: scale(1.1);
+} */
+
+
+
 .searchPopup {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -141,7 +157,7 @@ a {
             
         }
 
-        .locationName {
+        .popupLocationName {
             grid-column: 1 / span 5;
             justify-self: start;
             font-size: 25px;
@@ -195,7 +211,7 @@ a {
             font-weight: lighter;
         }
 
-        .tempMinMax {
+        .popuptempMinMax {
             margin-top: 0;
         }
 
