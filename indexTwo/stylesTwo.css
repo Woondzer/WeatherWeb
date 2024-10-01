@@ -11,6 +11,10 @@ body {
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding: 20px 50px 20px 50px;
     /* padding: 0px 50px 0px 50px; */
+    background-image: url("/img/background.png");
+    background-size: cover;
+    
+    background-repeat: no-repeat;
 }
 
 .topNav {
@@ -20,6 +24,7 @@ body {
     align-items: center;
     box-sizing: border-box;
     width: 100%;
+    max-width: 1550px;
     height: 60px;
     background-color: white;
     border-radius: 15px;
@@ -27,8 +32,12 @@ body {
     
 }
 
+.topNav * {
+    color: rgb(159, 210, 236);
+}
+
 #user-Location {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 
@@ -48,24 +57,42 @@ a {
 }
 
 .startInfo {
-    display: flex;
+    /* display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     width: 100%;
+    max-width: 1550px;
     height: auto;
     padding: 50px;
     border-radius: 15px;
+    background-color: white; */
+    display: grid;
+    grid-template-rows: 1fr repeat(6, min-content); /* Allow rows to grow */
+    grid-template-columns: 20% 60% 20%;
+    row-gap: 30px;
+    width: 100%;
+    max-width: 1550px;
+    min-height: 60vh;
+    border-radius: 15px;
     background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .displayCity {
+    grid-row: 1;
+    grid-column:2;
+    text-align: center;
     font-size: 50px;
+    color: rgb(102, 189, 232);
 }
 
 .today {
     display: grid;
+    grid-row: 2;
+    grid-column:2;
     grid-template-columns: 100px repeat(5, 1fr);
     margin-bottom: 20px;
     border-radius: 10px;
@@ -78,7 +105,7 @@ a {
             display:flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
             
         }
@@ -123,6 +150,8 @@ a {
 
 .day2 {
     display: grid;
+    grid-row: 3;
+    grid-column:2;
     grid-template-columns:  100px repeat(5, 1fr);
     margin-bottom: 20px;
     border-radius: 10px;
@@ -135,7 +164,7 @@ a {
             display:flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
             
         }
@@ -180,6 +209,8 @@ a {
 
 .day3 {
     display: grid;
+    grid-row: 4;
+    grid-column:2;
     grid-template-columns:  100px repeat(5, 1fr);
     margin-bottom: 20px;
     border-radius: 10px;
@@ -193,7 +224,7 @@ a {
             display:flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
             
         }
@@ -238,6 +269,8 @@ a {
 
 .day4 {
     display: grid;
+    grid-row: 5;
+    grid-column:2;
     grid-template-columns: 100px repeat(5, 1fr);
     margin-bottom: 20px;
     border-radius: 10px;
@@ -250,7 +283,7 @@ a {
             display:flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
             
         }
@@ -295,6 +328,8 @@ a {
 
 .day5 {
     display: grid;
+    grid-row: 6;
+    grid-column:2;
     grid-template-columns:  100px repeat(5, 1fr);
     margin-bottom: 20px;
     border-radius: 10px;
@@ -308,7 +343,7 @@ a {
             display:flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
             
         }

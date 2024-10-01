@@ -96,14 +96,36 @@ function updateSavedLocationsUI() {
             // add data to saveboxes
             box.innerHTML = `
                 <section class="locationName">${locationData.location}</section>
-                <section class="dayDate">${locationData.date}</section>
-                <section class="dlyweatherCode">${locationData.weatherCode}</section>
-                <section class="currTemp">${locationData.currTemp}°C</section>
-                <section class="dlyRainsum">${locationData.rain} mm</section>
-                <section class="tempMinMax">${locationData.tempMin} - ${locationData.tempMax}°C</section>
-                <section class="dlyWindSpeed">${locationData.windSpeed} m/s</section>
-                <button class="removeStar" onclick="removeFavorite(${index}); event.stopPropagation();">&#9733;</button>
+                <section id="saveBtn" class="removeStar" onclick="removeFavorite(${index}); event.stopPropagation();">&#9733;</section>
+                <section class="dayDate ddStyle">${locationData.date}</section>
+                <section class="dlyweatherCode wcodestyle">${locationData.weatherCode}</section>
+                <section class="currTemp ctempStyle">${locationData.currTemp}°c</section>
+                
+                <section class="info3">
+                <p class="dlyRainsum drainStyle">${locationData.rain}</p>
+                <p class="rainMetrics">&nbsp;- ☔(mm)</p>
+                </section>
+
+                <section class="info4"> <!--temp min & max-->
+                <p class="tempMinMax tminmaxStyle">${locationData.tempMin} - ${locationData.tempMax}</p>
+                <p class="txttmpMinMax">min °c&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;max °c</p>
+                </section>
+
+                <section class="info5">
+                <p class="dlyWindSpeed dwindspdStyle">${locationData.windSpeed}</p>
+                <p class="meterSecond">(m/s)</p>
+                </section>
+
+                
+
+
             `;
+            // <section class="tempMinMax tminmaxStyle">${locationData.tempMin} - ${locationData.tempMax}°C</section>
+            // <button class="removeStar" onclick="removeFavorite(${index}); event.stopPropagation();">&#9733;</button> 
+            // <section class="dlyWindSpeed dwindspdStyle">${locationData.windSpeed} m/s</section>
+            // <section class="dlyRainsum drainStyle">${locationData.rain} mm</section>
+
+
             
             // redirection function for saveboxes to get more info onpage 2
             box.onclick = function() {

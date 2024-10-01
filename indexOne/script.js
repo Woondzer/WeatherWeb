@@ -3,7 +3,6 @@
 
 function searchLocation() {
     const searchValue = document.getElementById("inputSearch").value;
-    
 
     if (searchValue) {
 
@@ -53,8 +52,6 @@ function searchLocation() {
     .catch(error => {
         console.error('Error fetching data:', error);
     });
-
-
 } 
 }
 
@@ -79,11 +76,12 @@ function getWeatherEmoji(weatherCode) {
 
 // --------------------- loading location on popup---------------------//
 function getUserSearch() {
+    
     var inputText = document.querySelector('#inputSearch').value;
     document.querySelector('.popupLocationName').innerHTML = inputText;
   }
   window.onload = getUserSearch;
-  
+
 
 
 // --------------------- store user search input for page 2---------------------//
@@ -91,6 +89,13 @@ function getUserSearch() {
 function userSearch() {
     const userSearchValue = document.getElementById("inputSearch").value;
     localStorage.setItem("userSearch", userSearchValue);
+}
+
+function autoScroll() {
+    var srchElement = document.getElementById("searchElement")
+    setTimeout(() => {
+        srchElement.scrollIntoView({behavior: 'smooth'});
+    }, 1700);    
 }
 
 function showError(error) {
