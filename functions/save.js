@@ -122,7 +122,7 @@ function updateSavedLocationsUI() {
             // redirection function for saveboxes to get more info onpage 2
             box.onclick = function() {
                 localStorage.setItem("selectedLocation", JSON.stringify(locationData));
-                window.location.href = "/indexThree/indexThree.html"; 
+                window.location.href = "../indexThree/indexThree.html"; 
             };
 
             box.style.display = 'grid';
