@@ -55,9 +55,10 @@ a {
 }
 
 #localTime {
-    color: white;
+    color: gray;
     font-size: 20px;
     margin-bottom: 10px;
+    
 }
 
 .startInfo {
