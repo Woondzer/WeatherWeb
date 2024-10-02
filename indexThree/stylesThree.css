@@ -58,7 +58,7 @@ a {
 
 .startInfo {
     display: grid;
-    grid-template-rows: 1fr repeat(6, min-content); /* Allow rows to grow */
+    grid-template-rows: 1fr repeat(6, min-content);
     grid-template-columns: 20% 60% 20%;
     row-gap: 30px;
     width: 100%;

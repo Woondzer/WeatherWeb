@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Load the selected location's weather data from localStorage
+    
     const selectedLocation = JSON.parse(localStorage.getItem("selectedLocation"));
 
     if (selectedLocation) {
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector(`.day${i+1}Rainsum`).innerHTML = `${forecast.rainSums[i]}`;
                 document.querySelector(`.day${i+1}WindSpeed`).innerHTML = `${forecast.windSpeeds[i]}`;
             }
+
                 //calculate average temp for each day
             for (let i = 0; i < 4; i++) {
                 const tempMin = forecast.minTemps[i];

@@ -18,12 +18,12 @@ function userFavorite() {
         // Check if the maximum number of favorites (3) is reached
         if (savedLocations.length >= 3) {
             alert("You can only save up to 3 locations.");
-            return;  // Prevent further saves
+            return;  
         }
 
         // Activate the star and save the current location
         star.classList.add('active');
-        star.innerHTML = '&#9733;'; // Filled star
+        star.innerHTML = '&#9733;'; 
 
         const cityName = localStorage.getItem("userSearch");
         const currentForecast = JSON.parse(localStorage.getItem("currweatherData"));
@@ -43,7 +43,7 @@ function userFavorite() {
             tempMax: dailyForecast.temperature_2m_max[0],
             windSpeed: dailyForecast.wind_speed_10m_max[0],
             date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-            fiveDayForecast: {                                            // Save the full 5-day forecast
+            fiveDayForecast: {
                 weatherCodes: dailyForecast.weather_code,
                 minTemps: dailyForecast.temperature_2m_min,
                 maxTemps: dailyForecast.temperature_2m_max,
@@ -56,17 +56,15 @@ function userFavorite() {
         savedLocations.push(savedData);
         localStorage.setItem("savedLocations", JSON.stringify(savedLocations));
 
-        // Reset and hide the popup after saving
+        
         resetPopup();
-
-        // Update the UI
         updateSavedLocationsUI();
     }
 }
 
 
 
-
+// --------------------- remove favorite location from slot---------------------//
 
 function removeFavorite(index) {
     let savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || [];
@@ -76,7 +74,7 @@ function removeFavorite(index) {
 }
 
 
-// when favorite star is clicked put it in free saveslot
+// --------------------- when favorite star is clicked put in free saveslot---------------------//
 
 function updateSavedLocationsUI() {
     const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || [];
@@ -86,7 +84,7 @@ function updateSavedLocationsUI() {
     saveBoxes.forEach(selector => {
         const box = document.querySelector(selector);
         box.innerHTML = ''; 
-        box.style.display = 'none'; // Hide saveboxes
+        box.style.display = 'none';
     });
 
     savedLocations.forEach((locationData, index) => {
@@ -120,12 +118,6 @@ function updateSavedLocationsUI() {
 
 
             `;
-            // <section class="tempMinMax tminmaxStyle">${locationData.tempMin} - ${locationData.tempMax}°C</section>
-            // <button class="removeStar" onclick="removeFavorite(${index}); event.stopPropagation();">&#9733;</button> 
-            // <section class="dlyWindSpeed dwindspdStyle">${locationData.windSpeed} m/s</section>
-            // <section class="dlyRainsum drainStyle">${locationData.rain} mm</section>
-
-
             
             // redirection function for saveboxes to get more info onpage 2
             box.onclick = function() {
@@ -133,18 +125,16 @@ function updateSavedLocationsUI() {
                 window.location.href = "/indexThree/indexThree.html"; 
             };
 
-            // display savedbox
             box.style.display = 'grid';
         }
     });
 }
 
 function resetPopup() {
-    // Hide the popup
+    // Hide popup & clear info
     document.querySelector('#moreInfo').style.display = 'none';
     document.getElementById('inputSearch').value = '';
 
-    // Clear weather info inside the popup
     document.querySelector('.popupdlyweatherCode').innerHTML = '';
     document.querySelector('.popuptempMinMax').innerHTML = '';
     document.querySelector('.popupdlyRainsum').innerHTML = '';
@@ -154,7 +144,7 @@ function resetPopup() {
     // Reset the star button to an empty state
     const star = document.querySelector('.favStar');
     star.classList.remove('active');
-    star.innerHTML = '&#9734;'; // Empty star
+    star.innerHTML = '&#9734;'; 
 }
 
 

@@ -1,4 +1,3 @@
-/*  tänker att stylen har en blålilarosa isch main bakgrund med en eller flera  frostatglasliknande  "boxar" som man ser olika data i */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster&display=swap');
 
@@ -10,7 +9,6 @@ body {
     background-color: rgb(159, 210, 236);
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding: 20px 50px 20px 50px;
-    /* padding: 0px 50px 0px 50px; */
     background-image: url("/img/background.png");
     background-size: cover;
     
@@ -57,19 +55,8 @@ a {
 }
 
 .startInfo {
-    /* display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    width: 100%;
-    max-width: 1550px;
-    height: auto;
-    padding: 50px;
-    border-radius: 15px;
-    background-color: white; */
     display: grid;
-    grid-template-rows: 1fr repeat(6, min-content); /* Allow rows to grow */
+    grid-template-rows: 1fr repeat(6, min-content); 
     grid-template-columns: 20% 60% 20%;
     row-gap: 30px;
     width: 100%;

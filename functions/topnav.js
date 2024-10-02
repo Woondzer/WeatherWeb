@@ -1,4 +1,3 @@
-// template literal &{} kommer var användbart kolla upp 
 var todayWeather = document.querySelector('.today-Weather')
 var todayTemp = document.querySelector('.today-Temp')
 
