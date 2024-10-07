@@ -11,7 +11,7 @@ body {
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding: 20px 50px 20px 50px;
     /* padding: 0px 50px 0px 50px; */
-    background-image: url("/img/background.png");
+    background-image: url("../img/background.png");
     background-size: cover;
     
     background-repeat: no-repeat;

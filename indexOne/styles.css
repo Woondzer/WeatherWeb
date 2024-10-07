@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
     background-color: rgb(159, 210, 236);
     padding: 20px 50px 20px 50px;
-    background-image: url("/img/background.png");
+    background-image: url("../img/background.png");
     background-size: cover;
     
     background-repeat: no-repeat;
